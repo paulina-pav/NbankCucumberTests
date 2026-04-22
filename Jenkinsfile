@@ -9,12 +9,12 @@ pipeline {
         )
     }
 
-    stages {
-
-        options {
+    options {
             skipDefaultCheckout()
-        }
-        
+    }
+
+    stages {
+            
         stage('Start backend') {
             steps {
                 sh 'docker rm -f nbank || true'
