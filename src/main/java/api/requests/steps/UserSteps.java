@@ -57,6 +57,20 @@ public class UserSteps {
         });
     }
 
+    public static UserChangeNameResponse changesRandomNameReturnsResponse(NewUserRequest user, UserChangeNameRequest name) {
+        UserChangeNameRequest changedName = RandomModelGenerator.generate(UserChangeNameRequest.class);
+
+        return StepLogger.log("User " + user.getUsername() + "changes name " + changedName, () -> {
+            UserChangeNameResponse userChangeNameResponse = new ValidatedCrudRequester<UserChangeNameResponse>(
+                    RequestSpecs.authAsUser(user.getUsername(), user.getPassword()),
+                    Endpoint.UPDATE_CUSTOMER_NAME,
+                    ResponseSpecs.requestReturnsOK())
+                    .put(name);
+            return userChangeNameResponse;
+        });
+    }
+
+
     public static UserChangeNameRequest changesNameReturnRequest(NewUserRequest user) {
 
         UserChangeNameRequest changedName = RandomModelGenerator.generate(UserChangeNameRequest.class);
