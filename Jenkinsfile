@@ -10,12 +10,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
+    
         stage('Start backend') {
             steps {
                 sh 'docker rm -f nbank || true'
