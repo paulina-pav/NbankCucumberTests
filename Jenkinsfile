@@ -14,7 +14,7 @@ pipeline {
     }
 
     stages {
-            
+
         stage('Start backend') {
             steps {
                 sh 'docker rm -f nbank || true'
