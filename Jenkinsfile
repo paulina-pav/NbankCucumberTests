@@ -25,7 +25,7 @@ pipeline {
 
         stage('Run Cucumber') {
             steps {
-                sh "mvn clean test -Pcucumber -Dcucumber.filter.tags=@${params.SCENARIO_ID}"
+                sh "mvn clean test -Pcucumber -Dserver=http://host.docker.internal:5000 -Dcucumber.filter.tags=@${params.SCENARIO_ID}"
             }
         }
     }
